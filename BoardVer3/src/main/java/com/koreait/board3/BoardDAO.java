@@ -14,18 +14,19 @@ public class BoardDAO {
 				+ " VALUES (?, ?) ";
 		
 		try {
-			con = DBUtils.getCon();
+			con = DBUtils.getCon();			
 			ps = con.prepareStatement(sql);
+			
 			ps.setString(1, vo.getTitle());
 			ps.setString(2, vo.getCtnt());
 			
+			return ps.executeUpdate(); //insert, update, delete
 			
 		} catch (Exception e) {			
 			e.printStackTrace();
 		} finally {
 			DBUtils.close(con, ps);
-		}
-		
+		}		
 		return 0;
 	}
 }

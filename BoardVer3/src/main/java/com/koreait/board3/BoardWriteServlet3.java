@@ -16,7 +16,6 @@ public class BoardWriteServlet3 extends HttpServlet {
 		request.getRequestDispatcher(jsp).forward(request, response);
 	}
 
-
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String title = request.getParameter("title");
 		String ctnt = request.getParameter("ctnt");
@@ -28,6 +27,11 @@ public class BoardWriteServlet3 extends HttpServlet {
 		vo.setTitle(title);
 		vo.setCtnt(ctnt);
 		
+		//insertBoard 호출
+		// "/list"로 Get방식으로 주소 이동
+		BoardDAO.insertBoard(vo);
+		
+		response.sendRedirect("/list3");
 	}
 
 }
